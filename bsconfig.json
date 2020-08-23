@@ -9,7 +9,9 @@
     "in-source": true
   },
   "suffix": ".bs.js",
-  "bs-dependencies": ["tablecloth-bucklescript"],
+  "bs-dependencies": [
+    "reason-standard"
+  ],
   "warnings": {
     "error": "+101"
   },

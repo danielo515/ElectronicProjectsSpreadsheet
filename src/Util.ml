@@ -1,8 +1,8 @@
-open Tablecloth
+open Standard
 
 let pick_columns (a,b) row =
-  (row[a], row[b])
+  ((Array.get row a), Array.get row b)
 
 let toMap sheet = 
   (Array.map sheet ~f:(pick_columns (0,1))) 
-  (* |> Map.String.fromArray *)
+  |> Map.String.ofArray

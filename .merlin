@@ -4,9 +4,9 @@ FLG -open ElectronicProjectsSpreadsheet
 FLG -ppx '/Users/danielo/mega/programacion/node/ElectronicProjectsSpreadsheet/node_modules/bs-platform/darwin/bsc.exe -as-ppx '
 S /Users/danielo/mega/programacion/node/ElectronicProjectsSpreadsheet/node_modules/bs-platform/lib/ocaml
 B /Users/danielo/mega/programacion/node/ElectronicProjectsSpreadsheet/node_modules/bs-platform/lib/ocaml
-FLG -w +a-4-9-20-40-41-42-50-61-102
-S /Users/danielo/mega/programacion/node/ElectronicProjectsSpreadsheet/node_modules/tablecloth-bucklescript/lib/ocaml
-B /Users/danielo/mega/programacion/node/ElectronicProjectsSpreadsheet/node_modules/tablecloth-bucklescript/lib/ocaml
+FLG -w +a-4-9-40-41-42-50-61-102
+S /Users/danielo/mega/programacion/node/ElectronicProjectsSpreadsheet/node_modules/reason-standard/lib/ocaml
+B /Users/danielo/mega/programacion/node/ElectronicProjectsSpreadsheet/node_modules/reason-standard/lib/ocaml
 S src
 B lib/bs/src
 ####BSB GENERATED: NO EDIT}

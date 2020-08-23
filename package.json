@@ -1,20 +1,21 @@
 {
 	"scripts": {
-		"build": "parcel build index.js --target node --no-minify --bundle-node-modules --no-source-maps",
+		"build": "parcel build src/Util.ml --no-minify --global Util --no-source-maps",
 		"push": "(cd dist && clasp push)",
 		"deploy": "yarn build && yarn push"
 	},
 	"staticFiles": {
 		"staticPath": [
 			"./appsscript.json",
-			"./.clasp.json"
+			"./.clasp.json",
+			"index.js"
 		]
 	},
 	"dependencies": {
-		"tablecloth-bucklescript": "^0.0.7"
+		"reason-standard": "^0.1.0-alpha.3"
 	},
 	"devDependencies": {
-		"bs-platform": "^8.2.0",
+		"bs-platform": "7.2.2",
 		"bsb-js": "^1.1.7",
 		"parcel-plugin-static-files-copy": "^2.5.0"
 	}

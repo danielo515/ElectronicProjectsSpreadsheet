@@ -2,31 +2,25 @@
 'use strict';
 
 var Curry = require("bs-platform/lib/js/curry.js");
-var Tablecloth = require("tablecloth-bucklescript/src/tablecloth.bs.js");
+var Standard = require("reason-standard/bucklescript/src/Standard.bs.js");
 
 function pick_columns(param, row) {
-  return [
-          Curry._1(row, {
-                hd: param[0],
-                tl: /* [] */0
-              }),
-          Curry._1(row, {
-                hd: param[1],
-                tl: /* [] */0
-              })
+  return /* tuple */[
+          Standard.$$Array.get(row, param[0]),
+          Standard.$$Array.get(row, param[1])
         ];
 }
 
 function toMap(sheet) {
-  var partial_arg = [
+  var partial_arg = /* tuple */[
     0,
     1
   ];
-  return Tablecloth.$$Array.map((function (param) {
-                return pick_columns(partial_arg, param);
-              }), sheet);
+  return Curry._1(Standard.$$Map.$$String.ofArray, Standard.$$Array.map(sheet, (function (param) {
+                    return pick_columns(partial_arg, param);
+                  })));
 }
 
 exports.pick_columns = pick_columns;
 exports.toMap = toMap;
-/* Tablecloth Not a pure module */
+/* Standard Not a pure module */
