@@ -4,14 +4,29 @@
 var Curry = require("bs-platform/lib/js/curry.js");
 var Tablecloth = require("tablecloth-bucklescript/src/tablecloth.bs.js");
 
-var func = Tablecloth.List.filterMap;
+function pick_columns(param, row) {
+  return [
+          Curry._1(row, {
+                hd: param[0],
+                tl: /* [] */0
+              }),
+          Curry._1(row, {
+                hd: param[1],
+                tl: /* [] */0
+              })
+        ];
+}
 
-var arg = Tablecloth.$$String.toList("Tablecloth");
+function toMap(sheet) {
+  var partial_arg = [
+    0,
+    1
+  ];
+  return Tablecloth.$$Array.map((function (param) {
+                return pick_columns(partial_arg, param);
+              }), sheet);
+}
 
-Tablecloth.$$String.fromList((function (param) {
-          return Curry._2(func, param, arg);
-        })(function (character) {
-          return Tablecloth.Char.fromCode(Tablecloth.Int.add(Tablecloth.Char.toCode(character), 1));
-        }));
-
-/*  Not a pure module */
+exports.pick_columns = pick_columns;
+exports.toMap = toMap;
+/* Tablecloth Not a pure module */

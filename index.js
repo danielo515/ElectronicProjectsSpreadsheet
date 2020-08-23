@@ -1,6 +1,6 @@
 const USAGE = "_usage";
 const ignoreSheets = [USAGE, "Materials"]
-import './src/Util'
+import U from './src/Util'
 
 const normalizeStr = str => str.toLowerCase().replace(/ /g, '_')
 const flatten = arr => arr.reduce((a, b) => [...a, ...b], [])
@@ -16,6 +16,7 @@ const getSheetAsObj = sheet => {
   const lookup = indexArr(data[0])
   const result = data[0].reduce(arrToObj, {})
 
+  Logger.log(U.toMap(data[1]))
   return data.slice(1).reduce((res, row) => {
     row.forEach((val, idx) => res[lookup[idx]].push(val))
     return res
