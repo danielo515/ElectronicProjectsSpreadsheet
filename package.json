@@ -1,0 +1,12 @@
+{
+	"scripts": {
+		"build": "parcel build index.js --target node --no-minify"
+	},
+	"dependencies": {
+		"tablecloth-bucklescript": "^0.0.7"
+	},
+	"devDependencies": {
+		"bs-platform": "^8.2.0",
+		"bsb-js": "^1.1.7"
+	}
+}
