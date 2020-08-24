@@ -1,12 +1,21 @@
 open Standard
+module Number_or_string = struct
+  type t = Any : 'a -> t 
+    [@@unboxed]     
+    type case = 
+        | Int of int 
+        | String of string
+    let classify (Any v : t) : case = 
+        if Js.typeof v = "number" then Int (Obj.magic v  : int)
+        else String (Obj.magic v : string)
+end
 
-type col = String of string | Int of int
-type row = col array
+type row = Number_or_string.t array
 type sheet = row array
 type sheet_map = int Standard.Map.String.t 
 
 let pick_columns (a,b) (row: row): (string * int) option =
-  match row.(a), row.(b) with
+  match Number_or_string.classify(row.(a)), Number_or_string.classify(row.(b)) with
   | String x, Int y -> Some (x, y)
   | _ -> None
 
