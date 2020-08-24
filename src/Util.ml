@@ -15,7 +15,8 @@ type sheet = row array
 type sheet_map = int Standard.Map.String.t 
 
 let pick_columns (a,b) (row: row): (string * int) option =
-  match Number_or_string.classify(row.(a)), Number_or_string.classify(row.(b)) with
+  let open Number_or_string in
+  match classify(row.(a)), classify(row.(b)) with
   | String x, Int y -> Some (x, y)
   | _ -> None
 
