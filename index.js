@@ -15,7 +15,7 @@ const getSheetAsObj = sheet => {
   const lookup = indexArr(data[0])
   const result = data[0].reduce(arrToObj, {})
 
-  Logger.log(Util.toMap(data[1]))
+  Logger.log(Util.sumSheets(data))
   return data.slice(1).reduce((res, row) => {
     row.forEach((val, idx) => res[lookup[idx]].push(val))
     return res

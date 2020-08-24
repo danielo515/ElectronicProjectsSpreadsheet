@@ -2,7 +2,8 @@
 	"scripts": {
 		"build": "parcel build src/Util.ml --no-minify --global Util --no-source-maps",
 		"push": "(cd dist && clasp push)",
-		"deploy": "yarn build && yarn push"
+		"deploy": "yarn build && yarn push",
+		"clean": "rm -rf dist .cache"
 	},
 	"staticFiles": {
 		"staticPath": [
