@@ -12,7 +12,11 @@ function myFunction() {
   const allSheets = s.getSheets()
   const sheets = allSheets.filter(sheet => !ignoreSheets.includes(sheet.getName()))
   const allData = sheets.map(getSheetData)
-  const sumData = Util.sumSheets(allData)
+  const sumData = Lib.sumSheets(allData)
   // Logger.log(sumData)
   usageSheetData.getRange(1, 1, sumData.length, 2).setValues(sumData)
 }
+
+function testStuff() {
+  Logger.log(Lib.getData(USAGE))
+}  

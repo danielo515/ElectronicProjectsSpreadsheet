@@ -1,6 +1,6 @@
 {
 	"scripts": {
-		"build": "parcel build src/Util.ml --no-minify --global Util --no-source-maps",
+		"build": "parcel build src/Util.ml --no-minify --global Lib --out-file lib --no-source-maps",
 		"push": "(cd dist && clasp push)",
 		"deploy": "yarn build && yarn push",
 		"clean": "rm -rf dist .cache"

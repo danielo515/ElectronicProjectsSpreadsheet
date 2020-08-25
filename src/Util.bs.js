@@ -64,10 +64,15 @@ function sumSheets(sheets) {
   return Standard.$$Map.toArray(foldMapSheets(Standard.$$Array.map(sheets, toMap)));
 }
 
+function getData(sheetName) {
+  return SpreadsheetApp.getActiveSpreadsheet().getSheetByName(sheetName).getDataRange().getValues();
+}
+
 exports.Number_or_string = Number_or_string;
 exports.mergeMap = mergeMap;
 exports.foldMapSheets = foldMapSheets;
 exports.toMap = toMap;
 exports.pick_columns = pick_columns;
 exports.sumSheets = sumSheets;
+exports.getData = getData;
 /* Standard Not a pure module */

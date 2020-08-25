@@ -38,3 +38,9 @@ let sumSheets sheets =
   Array.map sheets ~f:toMap 
   |. foldMapSheets
   |. Map.toArray
+
+let getData sheetName = let open Sheet in 
+  getActiveSpreadsheet ()
+  |. getSheetByName sheetName
+  |. getDataRange
+  |. getValues
