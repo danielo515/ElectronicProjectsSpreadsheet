@@ -1,9 +1,6 @@
 const USAGE = "_usage";
 const ignoreSheets = [USAGE, "Materials"]
 
-const isEmptyArr = arr => arr.every(i => i)
-const not = f => (x) => !f(x)
-
 const getSheetData = sheet => sheet.getDataRange().getValues()
 
 function myFunction() {
