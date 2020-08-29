@@ -3,6 +3,7 @@
 
 var Curry = require("bs-platform/lib/js/curry.js");
 var Standard = require("reason-standard/bucklescript/src/Standard.bs.js");
+var Caml_option = require("bs-platform/lib/js/caml_option.js");
 var Sheet$ElectronicProjectsSpreadsheet = require("./Sheet.bs.js");
 
 function pick_columns(param, row) {
@@ -48,14 +49,33 @@ function foldMapSheets(param) {
   return Curry._3(func$1, param, arg, sumMaps);
 }
 
+function getSheetsDataExcept(excluded) {
+  var func = function (param, param$1) {
+    return Standard.$$Array.includes(excluded, param, param$1);
+  };
+  var arg = Standard.$$String.equal;
+  return Standard.$$Array.map(Standard.$$Array.filterMap(SpreadsheetApp.getActiveSpreadsheet().getSheets(), (function (sheet) {
+                    var name = sheet.getName();
+                    if (func(name, arg)) {
+                      return ;
+                    } else {
+                      return Caml_option.some(sheet);
+                    }
+                  })), Sheet$ElectronicProjectsSpreadsheet.getAllValues);
+}
+
 function sumSheets(sheets) {
   return Standard.$$Map.toArray(foldMapSheets(Standard.$$Array.map(sheets, toMap)));
+}
+
+function sumAllSheets(excluded) {
+  return sumSheets(getSheetsDataExcept(excluded));
 }
 
 function getData(sheetName) {
   var func = Standard.$$Array.map;
   var arg = Sheet$ElectronicProjectsSpreadsheet.Cell.classify;
-  return Standard.$$Array.map(SpreadsheetApp.getActiveSpreadsheet().getSheetByName(sheetName).getDataRange().getValues(), (function (param) {
+  return Standard.$$Array.map(Sheet$ElectronicProjectsSpreadsheet.getAllValues(SpreadsheetApp.getActiveSpreadsheet().getSheetByName(sheetName)), (function (param) {
                 return Curry._2(func, param, arg);
               }));
 }
@@ -65,5 +85,7 @@ exports.foldMapSheets = foldMapSheets;
 exports.toMap = toMap;
 exports.pick_columns = pick_columns;
 exports.sumSheets = sumSheets;
+exports.sumAllSheets = sumAllSheets;
 exports.getData = getData;
+exports.getSheetsDataExcept = getSheetsDataExcept;
 /* Standard Not a pure module */

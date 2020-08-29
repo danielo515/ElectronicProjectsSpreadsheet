@@ -21,4 +21,6 @@ external getActiveSpreadsheet : unit -> spreadsheet = "getActiveSpreadsheet" [@@
 external getSheets : spreadsheet -> sheet array = "getSheets" [@@bs.send]
 external getSheetByName : spreadsheet -> string -> sheet = "getSheetByName" [@@bs.send]
 external getDataRange : sheet -> range = "getDataRange"  [@@bs.send]
+external getName : sheet -> string = "getName"  [@@bs.send]
 external getValues : range -> Cell.t array array = "getValues"  [@@bs.send]
+let getAllValues sheet =  getDataRange sheet |. getValues

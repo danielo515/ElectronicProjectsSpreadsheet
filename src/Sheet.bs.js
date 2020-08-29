@@ -16,5 +16,10 @@ var Cell = {
   classify: classify
 };
 
+function getAllValues(sheet) {
+  return sheet.getDataRange().getValues();
+}
+
 exports.Cell = Cell;
+exports.getAllValues = getAllValues;
 /* No side effect */
