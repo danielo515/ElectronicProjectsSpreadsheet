@@ -1,21 +1,11 @@
 open Standard
-module Number_or_string = struct
-  type t = Any : 'a -> t 
-    [@@unboxed]     
-    type case = 
-        | Int of int 
-        | String of string
-    let classify (Any v : t) : case = 
-        if Js.typeof v = "number" then Int (Obj.magic v  : int)
-        else String (Obj.magic v : string)
-end
 
-type row = Number_or_string.t array
+type row = Sheet.Cell.t array
 type sheet = row array
 type sheet_map = int Standard.Map.String.t 
 
 let pick_columns (a,b) (row: row): (string * int) option =
-  let open Number_or_string in
+  let open Sheet.Cell in
   match classify(row.(a)), classify(row.(b)) with
   | String x, Int y -> Some (x, y)
   | _ -> None
@@ -44,3 +34,4 @@ let getData sheetName = let open Sheet in
   |. getSheetByName sheetName
   |. getDataRange
   |. getValues
+  |. Array.map ~f:(Array.map ~f:Sheet.Cell.classify)
