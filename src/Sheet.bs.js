@@ -2,6 +2,7 @@
 'use strict';
 
 var Block = require("bs-platform/lib/js/block.js");
+var Standard = require("reason-standard/bucklescript/src/Standard.bs.js");
 
 function classify(cell) {
   var match = typeof cell;
@@ -16,10 +17,29 @@ var Cell = {
   classify: classify
 };
 
+function maxArrLn(arrs) {
+  return Standard.$$Array.fold(arrs, 0, (function (max, curr) {
+                if (max > Standard.$$Array.length(curr)) {
+                  return max;
+                } else {
+                  return Standard.$$Array.length(curr);
+                }
+              }));
+}
+
 function getAllValues(sheet) {
   return sheet.getDataRange().getValues();
 }
 
+function writeToSheet(data, name, row, col) {
+  var numRows = Standard.$$Array.length(data);
+  var numCols = maxArrLn(data);
+  SpreadsheetApp.getActiveSpreadsheet().getSheetByName(name).getRange(row, col, numRows, numCols).setValues(data);
+  return /* () */0;
+}
+
 exports.Cell = Cell;
+exports.maxArrLn = maxArrLn;
 exports.getAllValues = getAllValues;
-/* No side effect */
+exports.writeToSheet = writeToSheet;
+/* Standard Not a pure module */

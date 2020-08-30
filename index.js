@@ -15,5 +15,5 @@ function myFunction() {
 }
 
 function testStuff() {
-  Logger.log(Lib.getData(USAGE))
+  Logger.log(Lib.sumAllSheets(ignoreSheets))
 }  
