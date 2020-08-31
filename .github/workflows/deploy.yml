@@ -30,5 +30,10 @@ jobs:
         with:
           encoded-value: ${{ secrets.CLASP }}
           destination-file: creds.json
+      - name: Restore clasp rc
+        uses: kitek/decode-base64-into-file-action@1.0
+        with:
+          encoded-value: ${{ secrets.CLASP_RC }}
+          destination-file: .clasprc.json
       - name: deploy to GAS
         run: yarn push-ci
