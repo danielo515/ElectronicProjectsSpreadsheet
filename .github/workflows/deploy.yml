@@ -25,4 +25,9 @@ jobs:
         uses: EgorDm/gha-yarn-node-cache@v1
       - name: Build
         run: yarn build
+      - name: Restore clasp credentials
+        uses: kitek/decode-base64-into-file-action@1.0
+        with:
+          encoded-value: ${{ secrets.CLASP }}
+          destination-file: creds.json
  
