@@ -2,6 +2,7 @@
 	"scripts": {
 		"build": "parcel build src/Util.ml --no-minify --global Lib --out-file lib --no-source-maps",
 		"push": "(cd dist && clasp push)",
+		"push-ci": "clasp login --creds creds.json && yarn push",
 		"deploy": "yarn build && yarn push",
 		"clean": "rm -rf dist .cache"
 	},
@@ -16,6 +17,7 @@
 		"reason-standard": "^0.1.0-alpha.3"
 	},
 	"devDependencies": {
+		"@google/clasp": "^2.3.0",
 		"bs-platform": "7.2.2",
 		"bsb-js": "^1.1.7",
 		"parcel-plugin-static-files-copy": "^2.5.0"
