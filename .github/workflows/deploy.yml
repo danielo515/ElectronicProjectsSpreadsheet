@@ -36,4 +36,4 @@ jobs:
           encoded-value: ${{ secrets.CLASP_RC }}
           destination-file: .clasprc.json
       - name: deploy to GAS
-        run: yarn push-ci
+        run: yarn push
